@@ -4,7 +4,6 @@ import "../../components/BookCard/BookCard.scss";
 const BookCard = ({ dataPass }) => {
   console.log(dataPass);
   // const {volumeInfo } = dataPass;
-//   005215451545
   return (
     <>
       {dataPass?.volumeInfo?.imageLinks && (
