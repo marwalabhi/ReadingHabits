@@ -3,10 +3,8 @@ import "../../components/BookCard/BookCard.scss";
 
 const BookCard = ({ dataPass }) => {
   console.log(dataPass);
-
-
-// 0033223
   // const {volumeInfo } = dataPass;
+//   00121211
   return (
     <>
       {dataPass?.volumeInfo?.imageLinks && (
