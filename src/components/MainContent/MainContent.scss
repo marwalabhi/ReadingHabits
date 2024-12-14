@@ -1,0 +1,26 @@
+.c-input-sear-book{
+    padding-left: 30px;
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 6px;
+    border: none;
+    background: #FBF2F2;
+    outline-color: darkslateblue;
+    outline-width: 1px;
+}
+::placeholder {
+    color: #929292;
+    font-size: 18px;
+}
+button.c-btn-search-book {
+    background-color: #E0F0B4;
+    border-radius: 7px;
+    width: 125px;
+    height: 48px;
+    flex-shrink: 0;
+    font-weight: 400;
+    font-size: 20px;
+}
+button.c-btn-search-book:hover {
+    background-color: #d2f572;
+}

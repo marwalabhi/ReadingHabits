@@ -1,0 +1,36 @@
+$body-bg: #fcf6f1;
+
+body {
+  background-color: #fcf6f1;
+}
+.py-8 {
+  padding-bottom: 3.5rem !important;
+  padding-top: 3.5rem !important;
+}
+.p-6 {
+  padding: 2.5rem !important;
+}
+.form-control {
+  padding: .5rem 1rem;
+}
+.c-inclusive-sans-font {
+  font-family: "Inclusive Sans";
+  line-height: normal;
+  font-style: normal;
+}
+
+@media (min-width: 992px) { /* For lg and larger screens */
+  .mr-lg-custom {
+    margin-right: 17rem !important;
+  }
+}
+
+@media (min-width: 1200px) { /* For xl and larger screens */
+  .mr-xl-custom {
+    margin-right: 17rem !important;
+  }
+}
+
+// AIzaSyB28WWOQqfYRsX_6h4nKX5zZ2-aNpjXY_c
+
+// https://www.googleapis.com/books/v1/volumes?q=react:keyes&key=AIzaSyB28WWOQqfYRsX_6h4nKX5zZ2-aNpjXY_c
