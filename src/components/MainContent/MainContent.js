@@ -56,7 +56,7 @@ const MainContent = () => {
       </div>
       <div>
         <p className="c-inclusive-sans-font fs-5">Reading</p>
-        <hr className="text-muted my-3"></hr>
+        <hr className="mb-3 border border-primary border-2 opacity-75 w-25"></hr>
       </div>
       <div>
         <div className="row d-flex">
@@ -92,7 +92,7 @@ const MainContent = () => {
       </div>
       <div>
         <p className="c-inclusive-sans-font fs-5">Books Collection</p>
-        <hr className="my-3 text-muted"/>
+        <hr className="mb-3 border border-primary border-2 opacity-75 w-25"/>
       </div>
       {/* Card groups */}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-4">
