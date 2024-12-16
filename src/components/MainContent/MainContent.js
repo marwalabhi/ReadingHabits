@@ -9,10 +9,12 @@ const MainContent = () => {
   const [searchText, setSearchText] = useState("");
   const [books, setBooks] = useState([]);
 
+  const [readingList, setReadingList] = useState([]);
+
   console.log(books);
 
   const searchBook = (evt) => {
-    if (evt.key === "Enter") {
+    if (evt.key === "Enter" || evt.type === "click") {
       let query = "";
 
       if (searchText.includes("author:")) {
@@ -27,7 +29,7 @@ const MainContent = () => {
       }
       // API CALL
       axios
-        .get(`${BASE_URL}${query}&key=${API_KEY}`)
+        .get(`${BASE_URL}${query}&key=${API_KEY}&maxResults=40`)
         .then((res) => {
           console.log(res.data);
           setBooks(res?.data?.items || []);
@@ -48,19 +50,27 @@ const MainContent = () => {
         </div>
         <div>
           <button type="button" className="btn btn-dark c-inclusive-sans-font">
-            Add book
+            Trending books
           </button>
         </div>
       </div>
       <div>
         <p className="c-inclusive-sans-font fs-5">Reading</p>
+        <hr className="text-muted my-3"></hr>
       </div>
       <div>
         <div className="row d-flex">
-          <BookCard />
+          {readingList.length === 0 ? (
+            <div className="text-body-tertiary c-inclusive-sans-font fs-5 w-75 d-flex justify-content-center align-items-center" style={{height: "13rem"}}>
+              <p>You haven't added any books to read yet!</p>
+            </div>
+          ) : (
+            <>
+              <BookCard />
+            </>
+          )}
         </div>
       </div>
-      <hr />
       <div className="d-flex gap-3 my-5 flex-wrap me-5 justify-content-center mr-lg-custom mr-xl-custom">
         <input
           type="text"
@@ -75,13 +85,14 @@ const MainContent = () => {
         ></input>
         <button
           className="btn c-btn-search-book c-inclusive-sans-font"
-          onClick={() => {}}
+          onClick={searchBook}
         >
           Search
         </button>
       </div>
       <div>
         <p className="c-inclusive-sans-font fs-5">Books Collection</p>
+        <hr className="my-3 text-muted"/>
       </div>
       {/* Card groups */}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-4">
@@ -95,7 +106,7 @@ const MainContent = () => {
       </div>
       {books.length === 0 && (
         <div
-          className="fs-4 text-muted c-inclusive-sans-font w-75 d-flex justify-content-center align-items-center"
+          className="fs-5 text-body-tertiary c-inclusive-sans-font w-75 d-flex justify-content-center align-items-center"
           style={{ height: "17rem" }}
         >
           Search for books you want to track!

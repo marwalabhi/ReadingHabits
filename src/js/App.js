@@ -22,14 +22,18 @@ import {
   Outlet,
   RouterProvider,
 } from "react-router-dom";
+import { Provider } from "react-redux";
+import appStore from "../../utils/Redux Store/appStore";
 
 
 const AppLayout = () => {
   return (
-    <div className="container-fluid">
-      <Header />
-      <Outlet/>
-    </div>
+    <Provider store={appStore}>
+      <div className="container-fluid">
+        <Header />
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 
@@ -59,7 +63,7 @@ const appRouter = createBrowserRouter(
     },
     {
       path: "/signup",
-      element: <SignUp/>,
+      element: <Provider store={appStore}><SignUp/></Provider>,
     },
     {
       path: "/login",

@@ -1,22 +1,31 @@
 import { Link } from "react-router-dom";
 import "../../components/BookCard/BookCard.scss";
+import { Modal, Button } from "react-bootstrap";
+import { useState } from "react";
 
 const BookCard = ({ dataPass }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalShow = () => {
+    setShowModal(true);
+  };
+
   console.log(dataPass);
-  // const {volumeInfo } = dataPass;
+  
   return (
     <>
       {dataPass?.volumeInfo?.imageLinks && (
-        <Link to={""} className="text-decoration-none">
+        <Link to={""} className="text-decoration-none" onClick={handleModalShow}>
           <div className="col">
-            <div className="card" style={{ width: "16rem" }}>
+            <div className="card border-0 bg-transparent" style={{ width: "17rem" }}>
               <img
                 src={dataPass?.volumeInfo?.imageLinks?.thumbnail}
-                className="card-img-top img-fluid"
+                className="img-fluid rounded-end-4 w-75"
                 alt="book_image"
+                style={{height: "290px"}}
               />
 
-              <div className="card-body">
+              <div className="card-body w-75 px-1">
                 <h5 className="card-title fs-6">
                   {dataPass?.volumeInfo?.title}
                 </h5>

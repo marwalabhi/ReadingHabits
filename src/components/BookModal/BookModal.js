@@ -2,7 +2,9 @@
 
 const BookModal = () => {
   return (
-    <div>BookModal</div>
+    <div className="modal-dialog modal-xl">
+      BookModal
+    </div>
   )
 }
 

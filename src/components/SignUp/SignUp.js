@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 
 import { useState } from "react";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { asignup } from "../../../utils/Redux Store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPassVisible, setConfirmPassVisible] = useState(false);
 
@@ -21,18 +26,27 @@ const SignUp = () => {
       Go to the homepage
     </Tooltip>
   );
+
   const userDetail = {
-    fullname: "",
+    fullName: "",
     email: "",
     password: "",
     confirmPassword: "",
-  }
-  const [data, setData] = useState(userDetail);
-  const handleInput = (evt) => {
-    // console.log(evt.target.value);
-    
   };
+  const [formData, setFormData] = useState(userDetail);
 
+
+  const dispatch = useDispatch();
+
+  // {
+  //   payload: {}
+  // }
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(asignup(formData));
+    // navigate("/login");
+  };
 
   return (
     <main className="position-relative">
@@ -81,28 +95,50 @@ const SignUp = () => {
             <div className="col-xl-5 col-lg-6 col-md-8 col-12">
               <div className="card shadow-sm mb-3">
                 <div className="card-body py-5">
-                  <form className="needs-validation mb-6" noValidate>
+                  <form
+                    onSubmit={handleSubmit}
+                    className="needs-validation mb-6"
+                    noValidate
+                  >
                     <div className="mb-3 ">
-                      <label for="signupFullnameInput" className="form-label">
+                      <label
+                        htmlFor="signupFullnameInput"
+                        className="form-label"
+                      >
                         Full Name
                       </label>
                       <input
+                        name="fullName"
+                        value={formData.fullName}
                         type="text"
                         className="form-control"
                         id="signupFullnameInput"
                         required
-                        onChange={handleInput}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
                       />
                       <div className="invalid-feedback">
                         Please enter full name
                       </div>
                     </div>
                     <div className="mb-3">
-                      <label for="signupEmailInput" className="form-label">
+                      <label htmlFor="signupEmailInput" className="form-label">
                         Email
                         <span className="text-danger">*</span>
                       </label>
                       <input
+                        name="email"
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
                         type="email"
                         className="form-control"
                         id="signupEmailInput"
@@ -113,11 +149,22 @@ const SignUp = () => {
                       </div>
                     </div>
                     <div className="mb-3">
-                      <label for="formSignUpPassword" className="form-label">
+                      <label
+                        htmlFor="formSignUpPassword"
+                        className="form-label"
+                      >
                         Password
                       </label>
                       <div className="password-field position-relative">
                         <input
+                          name="password"
+                          value={formData.password}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              [e.target.name]: e.target.value,
+                            })
+                          }
                           type={passwordVisible ? "text" : "password"}
                           className="form-control fakePassword"
                           id="formSignUpPassword"
@@ -137,13 +184,21 @@ const SignUp = () => {
                     </div>
                     <div className="mb-3">
                       <label
-                        for="formSignUpConfirmPassword"
+                        htmlFor="formSignUpConfirmPassword"
                         className="form-label"
                       >
                         Confirm Password
                       </label>
                       <div className="password-field position-relative">
                         <input
+                          name="confirmPassword"
+                          value={formData.confirmPassword}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              [e.target.name]: e.target.value,
+                            })
+                          }
                           type={confirmPassVisible ? "text" : "password"}
                           className="form-control fakePassword"
                           id="formSignUpConfirmPassword"
@@ -172,7 +227,7 @@ const SignUp = () => {
                           />
                           <label
                             className="form-check-label ms-2"
-                            for="signupCheckTextCheckbox"
+                            htmlFor="signupCheckTextCheckbox"
                           >
                             <Link className="text-decoration-none">
                               Terms of Use
@@ -189,6 +244,7 @@ const SignUp = () => {
                       <button
                         className="btn btn-primary c-btn-back-color-set"
                         type="submit"
+                        onClick={handleSubmit}
                       >
                         Sign Up
                       </button>
